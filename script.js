@@ -104,22 +104,37 @@ document
                     formData.append("message", message);
                     formData.append("image", image);
                     formData.append("latitude", position.coords.latitude);
-                    formData.append("longitude", position.coords.longitude)
+                    formData.append("longitude", position.coords.longitude);
 
-                    fetch("http://localhost:8000/api/posts", {
-                        method: "POST",
-                        body: formData,
-                    })
-                        .then(res => res.json())
-                        .then((data) => {
-                            alert("Thanks, " + name + "! Your post has been saved successfully.");
-                            document.getElementById("celebrationModal").style.display = "none";
-                            document.getElementById("celebrationForm").reset();
-                        })
-                        .catch((err) => {
-                            console.error("submission failed", err);
-                            alert("Something went wrong!");
-                        })
+                    alert(
+                        "Thanks, " +
+                            name +
+                            "! Your post has been saved successfully." +
+                            position.coords.latitude +
+                            "," +
+                            position.coords.longitude
+                    );
+
+                    // fetch("http://localhost:8000/api/posts", {
+                    //     method: "POST",
+                    //     body: formData,
+                    // })
+                    //     .then((res) => res.json())
+                    //     .then((data) => {
+                    //         alert(
+                    //             "Thanks, " +
+                    //                 name +
+                    //                 "! Your post has been saved successfully."
+                    //         );
+                    //         document.getElementById(
+                    //             "celebrationModal"
+                    //         ).style.display = "none";
+                    //         document.getElementById("celebrationForm").reset();
+                    //     })
+                    //     .catch((err) => {
+                    //         console.error("submission failed", err);
+                    //         alert("Something went wrong!");
+                    //     });
                 },
                 function (error) {
                     alert("Geolocation failed: " + error.message);
@@ -127,7 +142,7 @@ document
                 {
                     enableHighAccuracy: true,
                     timeout: 10000,
-                    maximumAge: 0
+                    maximumAge: 0,
                 }
             );
         } else {
